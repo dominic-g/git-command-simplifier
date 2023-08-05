@@ -1,8 +1,13 @@
 #!/bin/bash
 # set -x
-source ~/bin/token.sh
+source .env
+# Ensure the required environment variables are set
+if [ -z "$GITHUB_TOKEN"]; then
+  echo "Error: GitHub token not provided."
+  exit 1
+fi
 
-# if [[ -n $(git status -s) ]]; then
+ if [[ -n $(git status -s) ]]; then
 
   commit_message=""
 #read -p "Provide the commit message: " MSG
@@ -96,11 +101,11 @@ expect<<EOF
 spawn git push
 expect {
   "*Username*" {
-    send "{$token}\r"
+    send "{$GITHUB_TOKEN}\r"
     exp_continue
   }
   "*Password*" {
-    send "{$token}\r"
+    send "{$GITHUB_TOKEN}\r"
     exp_continue
   }
   "*error: " {
@@ -114,7 +119,7 @@ expect {
 EOF
   
   #echo "Changes pushed to Git repository."
-# else
-#   # Working tree is clean
-#   echo "Working tree is clean. No changes to push."
-# fi
+else
+   # Working tree is clean
+   echo "Working tree is clean. No changes to push."
+fi
