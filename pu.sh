@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -x
+
 source .env
 # Ensure the required environment variables are set
 if [ -z "$GITHUB_TOKEN" ]; then
