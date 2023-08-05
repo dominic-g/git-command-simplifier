@@ -1,6 +1,8 @@
 # github
 Automation of github commit, push, pull and clone
 
+Ensure you have updated the 
+
 -to make the files executable run 
 chmod +x *.sh
 
