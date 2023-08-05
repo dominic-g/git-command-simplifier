@@ -27,6 +27,22 @@ ln -s "$DEST_DIR/setup-env.sh" "$DEST_DIR/github_token" || { echo "Failed to cre
 # Make the symbolic links executable
 chmod +x "$DEST_DIR/clone" "$DEST_DIR/push" "$DEST_DIR/pull" "$DEST_DIR/github_token" || { echo "Failed to make symbolic links executable"; exit 1; }
 
+# Prompt user for GitHub token
+read -p "Enter your GitHub token " GITHUB_TOKEN
+
+# Validate the token using the given regexp
+if [[ ! "$GITHUB_TOKEN" =~ ^(gh[ps]_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})$ ]]; then
+    echo "Error: Invalid GitHub token format."
+    exit 1
+fi
+
+# Prompt user for GitHub username
+read -p "Enter your GitHub username: " GITHUB_USERNAME
+
+# Store the token and username in the .env file
+echo "GITHUB_TOKEN=\"$GITHUB_TOKEN\"" > "$DEST_DIR/.env"
+echo "GITHUB_USERNAME=\"$GITHUB_USERNAME\"" >> "$DEST_DIR/.env"
+
 # Add the destination directory to the PATH environment
 echo "export PATH=\$PATH:$DEST_DIR" >> "$HOME/.bashrc" || { echo "Failed to modify shell profile"; exit 1; }
 
