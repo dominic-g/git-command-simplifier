@@ -20,7 +20,24 @@ You can simply use:
 push "commit message" (optional)
 ```
 
-If no commit message is provided, a message is automatically generated based on file changes.
+if the commit message you are using has no spaces ie its one word, then there is no need for quotes you can type
+
+```
+push commit
+```
+
+If you are in a hurry and do not want to keep writing the commit message just type
+
+```
+push
+```
+
+and the program will write the files affected and timestamp.
+
+If the files edited, created and deleted are many,
+the message will be clipped at 68 characters to meet [github commit message length requirement](https://www.gitkraken.com/learn/git/best-practices/git-commit-message#git-commit-message-structure).
+
+**Note:** __Kindly use a helpful commit message to help your team track the changes.\nThis feature is only added for when there is time limitations, otherwise try and use helpful commit messages.__.
 
 2. **Cloning Repositories:**
 
