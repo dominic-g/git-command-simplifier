@@ -1,0 +1,4 @@
+# config.sh
+token="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"
+
+username="dominic-g"
