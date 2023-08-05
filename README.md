@@ -66,6 +66,13 @@ This command will prompt you to enter the new token and username, making it easy
 chmod +x install.sh
 ```
 
+If you get the following error or similar messgae while running the script
+
+```
+bash: ./install.sh: Permission denied
+```
+**DO NOT** run it with super user access ```~~su~~``` just run the command above to make it executable
+
 4. Install the `expect` package (if not already installed):
 
 ```
