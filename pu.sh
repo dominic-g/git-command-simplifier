@@ -2,7 +2,7 @@
 # set -x
 source .env
 # Ensure the required environment variables are set
-if [ -z "$GITHUB_TOKEN"]; then
+if [ -z "$GITHUB_TOKEN" ]; then
   echo "Error: GitHub token not provided."
   exit 1
 fi
