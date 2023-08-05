@@ -35,9 +35,10 @@ push
 and the program will write the files affected and timestamp.
 
 If the files edited, created and deleted are many,
-the message will be clipped at 68 characters to meet [github commit message length requirement](https://www.gitkraken.com/learn/git/best-practices/git-commit-message#git-commit-message-structure).
+the message will be clipped at 72 characters to meet [github commit message length requirement](https://www.gitkraken.com/learn/git/best-practices/git-commit-message#git-commit-message-structure).
 
-**Note:** __Kindly use a helpful commit message to help your team track the changes.\nThis feature is only added for when there is time limitations, otherwise try and use helpful commit messages.__.
+**Note:** **__Kindly use a helpful commit message to help your team track the changes.__**
+**__This feature is only added for when there is time limitations, otherwise try and use helpful commit messages.__**
 
 2. **Cloning Repositories:**
 
