@@ -46,7 +46,7 @@ exit 0
 
 if [ $? -eq 0 ]; then
   printf "${GREEN}Git clone completed successfully.${RESET}\n"
-  printf "${BLUE}Run cd $REPO_NAME to run other git commands like push & pull${RESET}\n"
+  printf "${BLUE}Run${RESET} ${WHITE}cd $REPO_NAME${RESET} ${BLUE}to run other git commands like push & pull${RESET}\n"
 fi
 
 exit 1
