@@ -9,10 +9,9 @@ fi
 # Prompt user for GitHub username
 read -p "Enter your GitHub username: " GITHUB_USERNAME
 
-
+DEST_DIR="$HOME/.github_app"
 # Create or overwrite the .env file
-echo "GITHUB_TOKEN=\"$GITHUB_TOKEN\"" > .env
-echo "GITHUB_USERNAME=\"$GITHUB_USERNAME\"" >> .env
+echo "GITHUB_TOKEN=\"$GITHUB_TOKEN\"" > "$DEST_DIR/.env"
+echo "GITHUB_USERNAME=\"$GITHUB_USERNAME\"" >> "$DEST_DIR/.env"
 
 echo "Environment variables saved to .env file."
-
