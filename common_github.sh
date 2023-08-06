@@ -49,8 +49,12 @@ setup_git_details() {
     # Create or overwrite the .env file
     echo "GITHUB_TOKEN=\"$GITHUB_TOKEN\"" >> "$DEST_DIR/.env"
     echo "GITHUB_USERNAME=\"$GITHUB_USERNAME\"" >> "$DEST_DIR/.env"
-    echo "GITHUB_USERNAME=\"$GIT_CONFIG_EMAIL\"" >> "$DEST_DIR/.env"
-    echo "GITHUB_USERNAME=\"$GIT_CONFIG_NAME\"" >> "$DEST_DIR/.env"
+    echo "GIT_CONFIG_EMAIL=\"$GIT_CONFIG_EMAIL\"" >> "$DEST_DIR/.env"
+    echo "GIT_CONFIG_EMAIL=\"$GIT_CONFIG_EMAIL\"" >> "$DEST_DIR/.env"
 
+
+    git config --global --replace-all user.email "$GIT_CONFIG_EMAIL"
+    git config --global --replace-all user.name "$GIT_CONFIG_NAME"
+    
     printf "${GREEN}Git variables saved to Enivronment.${RESET}"
 }

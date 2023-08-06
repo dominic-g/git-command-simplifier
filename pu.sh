@@ -6,14 +6,7 @@ if [ -z "$GITHUB_TOKEN" ]; then
   print_colored_message "$RED" "Error: GitHub token not provided."
   exit 1
 fi
-if [ -z "$GIT_CONFIG_EMAILh" ]; then
-  print_colored_message "$RED" "Error: GitHub config email not provided."
-  exit 1
-fi
-if [ -z "$GIT_CONFIG_NAME" ]; then
-  print_colored_message "$RED" "Error: GitHub config name not provided."
-  exit 1
-fi
+
 
  if [[ -n $(git status -s) ]]; then
 
@@ -96,37 +89,34 @@ fi
 
   git add .
 
-  git config --global user.email $GIT_CONFIG_EMAIL
-  git config --global user.name $GIT_CONFIG_NAME
-
-
   git commit -m "$commit_message"
 
-  echo $commit_message
+  printf "$GREEN" "\n\n Commiting: $commit_message\n\n"
 
-  expect<<EOF
+  expect -c "
   spawn git push
   expect {
-    "*Username*" {
-      send "{$GITHUB_TOKEN}\r"
+    \"*Username*\" {
+      send \"$GITHUB_USERNAME\r\"
       exp_continue
     }
-    "*Password*" {
-      send "{$GITHUB_TOKEN}\r"
+    \"*Password*\" {
+      send \"$GITHUB_TOKEN\r\"
       exp_continue
     }
-    "*error: " {
-      puts "ERROR: Git push failed!"
+    \"*error: \" {
+      puts \"ERROR: Git push failed!\"
       exit 1
     }
-    eof {
-      puts "Git push completed successfully."
-    }
+    eof
   }
-  EOF
-  
-  #echo "Changes pushed to Git repository."
+  exit 0
+  "
+
+  if [ $? -eq 0 ]; then
+    print_colored_message "${GREEN}" "Git push completed successfully.\n"
+  fi
 else
    # Working tree is clean
-   echo "Working tree is clean. No changes to push."
+   print_colored_message "${BLUE}" "Working tree is clean. No changes to push."
 fi

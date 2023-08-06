@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Define ANSI color escape codes
-GREEN="\033[0;32m"
-BLUE="\033[0;34m"
-RESET="\033[0m"
-
 source .env
 # Ensure the required environment variables are set
 if [[ -z "$GITHUB_TOKEN" || -z "$GITHUB_USERNAME" ]]; then
@@ -25,10 +20,7 @@ if [[ ! "$REPO_NAME" =~ ^[a-zA-Z0-9_.-]+$ ]]; then
   exit 1
 fi
 
-# Function to print colored messages
-print_colored_message() {
-  echo -e "$1$2$RESET"
-}
+
 # Clone the repository
 echo "Cloning repository: $REPO_NAME"
 
