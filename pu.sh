@@ -91,7 +91,7 @@ fi
 
   git commit -m "$commit_message"
 
-  printf "$GREEN" "\n\n Commiting: $commit_message\n\n"
+  print_colored_message "$GREEN" "\n\n Commiting: $commit_message\n\n"
 
   expect -c "
   spawn git push
