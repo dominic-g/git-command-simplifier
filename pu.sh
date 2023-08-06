@@ -89,8 +89,8 @@ fi
 
 git add .
 
-git config --global user.email "dominicnjoroge1@gmail.com"
-git config --global user.name "Dominic Gitau"
+git config --global user.email $GIT_CONFIG_EMAIL
+git config --global user.name $GIT_CONFIG_NAME
 
 
 git commit -m "$commit_message"
