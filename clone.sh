@@ -25,41 +25,38 @@ if [[ ! "$REPO_NAME" =~ ^[a-zA-Z0-9_.-]+$ ]]; then
   exit 1
 fi
 
-
+# Function to print colored messages
+print_colored_message() {
+  echo -e "$1$2$RESET"
+}
 # Clone the repository
 echo "Cloning repository: $REPO_NAME"
-#if ! git clone "https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$REPO_NAME"; then
-#  echo "Error: Cloning repository failed."
-#  exit 1
-#fi
-expect<<EOF
-spawn git clone "https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$REPO_NAME"
+
+expect -c "
+spawn git clone \"https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$REPO_NAME\"
 expect {
-  "*Username*" {
-    send "{$GITHUB_TOKEN}\r"
+  \"*Username*\" {
+    send \"$GITHUB_USERNAME\r\"
     exp_continue
   }
-  "*Password*" {
-    send "{$GITHUB_TOKEN}\r"
+  \"*Password*\" {
+    send \"$GITHUB_TOKEN\r\"
     exp_continue
   }
-  "*error: " {
-    puts "ERROR: Git clone failed!"
+  \"*error: \" {
+    puts \"ERROR: Git clone failed!\"
     exit 1
   }
-  eof {
-    #puts "Git clone completed successfully.\n Run cd $REPO_NAME to run other git commands like push & pull"
-
-    message1="${GREEN}Git clone completed successfully.${RESET}"
-    message2="${BLUE}Run cd \$REPO_NAME to run other git commands like push & pull${RESET}"
-
-    # Print the colored messages
-    echo -e "$message1"
-    echo -e "$message2"
-  }
+  eof
 }
-EOF
+exit 0
+"
+
+if [ $? -eq 0 ]; then
+  printf "${GREEN}Git clone completed successfully.${RESET}\n"
+  printf "${BLUE}Run cd \$REPO_NAME to run other git commands like push & pull${RESET}\n"
+fi
 
 exit 1
 # Change terminal into the repository folder if cloning is successful
-cd "$REPO_NAME" || exit 1
+# cd "$REPO_NAME" || exit 1
