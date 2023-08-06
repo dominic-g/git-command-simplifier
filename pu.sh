@@ -91,7 +91,7 @@ fi
 
   git commit -m "$commit_message"
 
-  print_colored_message "$GREEN" "\n\n Commiting: $commit_message\n\n"
+  print_colored_message "$GREEN" "\nCommiting: $commit_message\n"
 
   expect -c "
   spawn git push
@@ -114,7 +114,7 @@ fi
   "
 
   if [ $? -eq 0 ]; then
-    print_colored_message "${GREEN}" "Git push completed successfully.\n"
+    print_colored_message "${GREEN}" "\nGit push completed successfully."
   fi
 else
    # Working tree is clean
