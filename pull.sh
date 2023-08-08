@@ -2,6 +2,9 @@
 
 source .env
 
+git pull
+exit 1
+
 expect<<EOF
 spawn git pull
 expect {
