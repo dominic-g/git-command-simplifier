@@ -51,4 +51,4 @@ fi
 
 exit 1
 # Change terminal into the repository folder if cloning is successful
-# cd "$REPO_NAME" || exit 1
+cd "$REPO_NAME" || exit 1
