@@ -8,7 +8,7 @@ This program provides a streamlined approach to interacting with Git repositorie
 
    Instead of the usual sequence of commands:
    
-```bash
+```
 git add .
 git commit -m "commit message"
 git push
